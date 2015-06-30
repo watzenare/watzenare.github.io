@@ -17,8 +17,7 @@ window.addEventListener('load', function() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('js/push-service-worker.js').then(initialiseState);
         if (Notification.permission === 'granted') {
-            var id = subscribe();
-console.log(id);
+            console.log(subscribe());
         } else {
             unsubscribe();
         }
