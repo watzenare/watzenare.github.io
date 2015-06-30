@@ -1,10 +1,21 @@
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
+Notification.requestPermission(function(result) {  
+  if (result === 'denied') {  
+    console.log('Permission wasn\'t granted. Allow a retry.');  
+    return;  
+  } else if (result === 'default') {  
+    console.log('The permission request was dismissed.');  
+    return;  
+  }  
+  console.log('Permission was granted for notifications');  
+});
+
 window.addEventListener('load', function() {
     // Check that service workers are supported, if so, progressively
     // enhance and add push messaging support, otherwise continue without it.
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('js/pushSW.js')
+        navigator.serviceWorker.register('js/push-service-worker.js')
             .then(initialiseState);
         if (Notification.permission === 'granted') {
             subscribe();
