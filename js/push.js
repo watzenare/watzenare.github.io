@@ -17,8 +17,8 @@ window.addEventListener('load', function() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('js/push-service-worker.js').then(initialiseState);
         if (Notification.permission === 'granted') {
-console.log("here");
-            subscribe();
+            var id = subscribe();
+console.log(id);
         } else {
             unsubscribe();
         }
@@ -53,7 +53,6 @@ function initialiseState() {
     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
         // Do we already have a push message subscription?
         serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription) {
-console.log("here1");
             if (!subscription) {
                 // We aren't subscribed to push, so set UI
                 // to allow the user to enable push
@@ -61,7 +60,6 @@ console.log("here1");
             }
 
             // Keep your server in sync with the latest subscriptionId
-console.log("here2");
             sendSubscriptionToServer(subscription);
         })
         .catch(function(err) {
@@ -71,7 +69,6 @@ console.log("here2");
 }
 
 function sendSubscriptionToServer(subscription) {
-console.log("here3");
     // The curl command to trigger a push message straight from GCM
     var curlCommand = 'curl --header "Authorization: key=' + API_KEY +
         '" --header Content-Type:"application/json" ' + subscription.endpoint +
@@ -97,6 +94,7 @@ function subscribe() {
     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
         serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
             // Keep your server in sync with the latest subscriptionId
+console.log("here2323232");
             return sendSubscriptionToServer(subscription);
         })
         .catch(function(e) {
