@@ -15,9 +15,9 @@ window.addEventListener('load', function() {
     // Check that service workers are supported, if so, progressively
     // enhance and add push messaging support, otherwise continue without it.
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('js/push-service-worker.js')
-            .then(initialiseState);
+        navigator.serviceWorker.register('js/push-service-worker.js').then(initialiseState);
         if (Notification.permission === 'granted') {
+console.log("here");
             subscribe();
         } else {
             unsubscribe();
@@ -53,6 +53,7 @@ function initialiseState() {
     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
         // Do we already have a push message subscription?
         serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription) {
+console.log("here1");
             if (!subscription) {
                 // We aren't subscribed to push, so set UI
                 // to allow the user to enable push
@@ -60,6 +61,7 @@ function initialiseState() {
             }
 
             // Keep your server in sync with the latest subscriptionId
+console.log("here2");
             sendSubscriptionToServer(subscription);
         })
         .catch(function(err) {
@@ -69,6 +71,7 @@ function initialiseState() {
 }
 
 function sendSubscriptionToServer(subscription) {
+console.log("here3");
     // The curl command to trigger a push message straight from GCM
     var curlCommand = 'curl --header "Authorization: key=' + API_KEY +
         '" --header Content-Type:"application/json" ' + subscription.endpoint +
