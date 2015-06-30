@@ -1,14 +1,76 @@
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
-Notification.requestPermission(function(result) {  
-  if (result === 'denied') {  
-    console.log('Permission wasn\'t granted. Allow a retry.');  
-    return;  
-  } else if (result === 'default') {  
-    console.log('The permission request was dismissed.');  
-    return;  
-  }  
-  console.log('Permission was granted for notifications');  
+// Subscribes the browser to the GCM and obtains an unique push id
+function subscribe() {
+        console.log("he");
+    navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+        console.log("here1");
+        serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
+            console.log("here2");
+            // Keep your server in sync with the latest subscriptionId
+            return sendSubscriptionToServer(subscription);
+        })
+        .catch(function(e) {
+            console.log("hereFAK");
+            if (Notification.permission === 'denied') {
+                // The user denied the notification permission which
+                // means we failed to subscribe and the user will need
+                // to manually change the notification permission to
+                // subscribe to push messages
+                console.warn('Permission for Notifications was denied');
+            } else {
+                // A problem occurred with the subscription; common reasons
+                // include network errors, and lacking gcm_sender_id and/or
+                // gcm_user_visible_only in the manifest.
+                console.error('Unable to subscribe to push.', e);
+            }
+        });
+    });
+}
+
+// Unsubscribes the browser from the GCM in order to stop receiving more push messages
+function unsubscribe() {
+    navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+        // To unsubscribe from push messaging, you need get the
+        // subscription object, which you can call unsubscribe() on.
+        serviceWorkerRegistration.pushManager.getSubscription().then(
+        function(pushSubscription) {
+            // Check we have a subscription to unsubscribe
+            if (!pushSubscription) {
+                return;
+            }
+
+            var subscriptionId = pushSubscription.subscriptionId;
+            // Removing the subscription id from the user
+            return sendSubscriptionToServer(pushSubscription);
+
+            // We have a subscription, so call unsubscribe on it
+            pushSubscription.unsubscribe().then(function(successful) {
+                console.log('Unsubscribed successfully');
+            }).catch(function(e) {
+                // We failed to unsubscribe, this can lead to
+                // an unusual state, so may be best to remove
+                // the users data from your data store and
+                // inform the user that you have done so
+
+                console.log('Unsubscription error: ', e);
+            });
+        }).catch(function(e) {
+            console.error('Error thrown while unsubscribing from push messaging.', e);
+        });
+    });
+}
+
+// Opens an alert asking to the user if he wants to receive notifications
+Notification.requestPermission(function(result) {
+    if (result === 'denied') {
+        console.log('Permission wasn\'t granted. Allow a retry.');
+        return;
+    } else if (result === 'default') {
+        console.log('The permission request was dismissed.');
+        return;
+    }
+    console.log('Permission was granted for notifications');
 });
 
 window.addEventListener('load', function() {
@@ -17,7 +79,7 @@ window.addEventListener('load', function() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('js/push-service-worker.js').then(initialiseState);
         if (Notification.permission === 'granted') {
-            console.log(subscribe());
+            subscribe();
         } else {
             unsubscribe();
         }
@@ -86,62 +148,4 @@ function sendSubscriptionToServer(subscription) {
     //         console.log("Push id not obtained");
     //     }
     // });
-}
-
-// Subscribes the browser to the GCM and obtains an unique push id
-function subscribe() {
-    navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-        serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
-            // Keep your server in sync with the latest subscriptionId
-console.log("here2323232");
-            return sendSubscriptionToServer(subscription);
-        })
-        .catch(function(e) {
-            if (Notification.permission === 'denied') {
-                // The user denied the notification permission which
-                // means we failed to subscribe and the user will need
-                // to manually change the notification permission to
-                // subscribe to push messages
-                console.warn('Permission for Notifications was denied');
-            } else {
-                // A problem occurred with the subscription; common reasons
-                // include network errors, and lacking gcm_sender_id and/or
-                // gcm_user_visible_only in the manifest.
-                console.error('Unable to subscribe to push.', e);
-            }
-        });
-    });
-}
-
-// Unsubscribes the browser from the GCM in order to stop receiving more push messages
-function unsubscribe() {
-    navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-        // To unsubscribe from push messaging, you need get the
-        // subscription object, which you can call unsubscribe() on.
-        serviceWorkerRegistration.pushManager.getSubscription().then(
-        function(pushSubscription) {
-            // Check we have a subscription to unsubscribe
-            if (!pushSubscription) {
-                return;
-            }
-
-            var subscriptionId = pushSubscription.subscriptionId;
-            // Removing the subscription id from the user
-            return sendSubscriptionToServer(pushSubscription);
-
-            // We have a subscription, so call unsubscribe on it
-            pushSubscription.unsubscribe().then(function(successful) {
-                console.log('Unsubscribed successfully');
-            }).catch(function(e) {
-                // We failed to unsubscribe, this can lead to
-                // an unusual state, so may be best to remove
-                // the users data from your data store and
-                // inform the user that you have done so
-
-                console.log('Unsubscription error: ', e);
-            });
-        }).catch(function(e) {
-            console.error('Error thrown while unsubscribing from push messaging.', e);
-        });
-    });
 }
