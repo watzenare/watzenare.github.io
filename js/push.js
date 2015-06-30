@@ -6,7 +6,7 @@ window.addEventListener('load', function() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('js/pushSW.js')
             .then(initialiseState);
-        if (Notification.permission === 'granted') {
+        if (Notification.permission !== 'granted') {
             subscribe();
         } else {
             unsubscribe();
