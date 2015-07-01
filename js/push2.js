@@ -1,4 +1,4 @@
-var isPushEnabled = false;
+var isPushEnabled = true;
 
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
