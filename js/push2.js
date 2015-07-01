@@ -134,5 +134,5 @@ if ('serviceWorker' in navigator) {
 } else {
   console.warn('Service workers aren\'t supported in this browser.');
 }
-
-document.getElementById("demo").innerHTML = Notification.permission;
+var n = Notification.permission;
+document.getElementById("perm").innerHTML = n;
