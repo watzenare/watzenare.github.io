@@ -41,8 +41,6 @@ function initialiseState() {
     // Do we already have a push message subscription?
     serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription) {
         if (!subscription) {
-          // We aren't subscribed to push, so set UI
-          // to allow the user to enable push
           return;
         }
 
@@ -59,7 +57,6 @@ function initialiseState() {
 }
 
 function subscribe() {
-  // Disable the button so it can't be changed while we process the permission request
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
           document.getElementById("demo").innerHTML = "Fail2";
@@ -134,7 +131,8 @@ Notification.requestPermission(function(result) {
 // enhance and add push messaging support, otherwise continue without it.
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('js/sw.js').then(initialiseState);
-  subscribe();
+  unsubscribe();
 } else {
   console.warn('Service workers aren\'t supported in this browser.');
+  document.getElementById("perm").innerHTML = "Push is no available for your browser (use Chrome or Firefox updated)";
 }
