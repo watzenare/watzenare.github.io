@@ -88,7 +88,7 @@ function subscribe() {
           console.error('Unable to subscribe to push.', e);
         }
       });
-  })).catch(function(e) {
+  }).catch(function(e) {
   console.log(e);
 });
 }
