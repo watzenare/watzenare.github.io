@@ -26,13 +26,12 @@ function initialiseState() {
     console.warn('Push messaging isn\'t supported.');
     return;
   }
-  console.log("ini5");
 
   // We need the service worker registration to check for a subscription
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
   console.log("ini6");
     // Do we already have a push message subscription?
-    serviceWorkerRegistration.pushManager.getSubscription()
+    serviceWorkerRegistration.pushManager.subscribe()
       .then(function(subscription) {
   console.log("ini7");
         // Enable any UI which subscribes / unsubscribes from
