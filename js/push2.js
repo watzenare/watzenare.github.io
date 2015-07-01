@@ -14,23 +14,21 @@ Notification.requestPermission(function(result) {
     console.log('Permission was granted for notifications');
 });
 
-window.addEventListener('load', function() {
-    if (isPushEnabled) {
-      unsubscribe();
-    } else {
-      subscribe();
-    }
+if (isPushEnabled) {
+  unsubscribe();
+} else {
+  subscribe();
+}
 
-  // Check that service workers are supported, if so, progressively
-  // enhance and add push messaging support, otherwise continue without it.
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('js/sw.js')
-    // navigator.serviceWorker.register('/push-service-worker.js')
-      .then(initialiseState);
-  } else {
-    console.warn('Service workers aren\'t supported in this browser.');
-  }
-});
+// Check that service workers are supported, if so, progressively
+// enhance and add push messaging support, otherwise continue without it.
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('js/sw.js')
+  // navigator.serviceWorker.register('/push-service-worker.js')
+  .then(initialiseState);
+} else {
+  console.warn('Service workers aren\'t supported in this browser.');
+}
 
 // Once the service worker is registered set the initial state
 function initialiseState() {
