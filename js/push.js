@@ -25,6 +25,7 @@ function subscribe() {
             }
         });
     });
+    console.log("herrrrrr");
 }
 
 // Unsubscribes the browser from the GCM in order to stop receiving more push messages
