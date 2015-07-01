@@ -1,5 +1,5 @@
-var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
+var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
 // I WANT TO PRINT THE SUBSCRIPTIONID BUT THIS FUNCTION ISN'T REACHED
 function sendSubscriptionToServer(subscription) {
@@ -114,25 +114,31 @@ function unsubscribe() {
   });
 }
 
-// Requesting to the user if he wants to receive notifications
-Notification.requestPermission(function(result) {
-    $("#perm").html(result);
-    if (result === 'denied') {
-        console.log('Permission wasn\'t granted. Allow a retry.');
-        return;
-    } else if (result === 'default') {
-        console.log('The permission request was dismissed.');
-        return;
-    }
-    console.log('Permission was granted for notifications');
-});
+
+// Requesting to the user if he wants to receive notifications (you can use the manifest.json to
+// ge the same funcitonality)
+function requestPermission() {
+  Notification.requestPermission(function(result) {
+      $("#perm").html(result);
+      if (result === 'denied') {
+          console.log('Permission wasn\'t granted. Allow a retry.');
+          return;
+      } else if (result === 'default') {
+          console.log('The permission request was dismissed.');
+          return;
+      }
+      console.log('Permission was granted for notifications');
+  });
+}
+
 
 window.addEventListener('load', function() {
   // Check that service workers are supported, if so, progressively
   // enhance and add push messaging support, otherwise continue without it.
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('js/sw.js').then(initialiseState);
-    subscribe();
+    // requestPermission();
+    // subscribe();
   } else {
     $("#demo").html("Push is no available for your browser (use Chrome or Firefox updated)");
     console.warn('Service workers aren\'t supported in this browser.');
