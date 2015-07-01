@@ -1,7 +1,11 @@
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
 function sendSubscriptionToServer(subscription) {
-  document.getElementById("demo").innerHTML = subscription.subscriptionId;
+  if (!subscription) {
+    document.getElementById("demo").innerHTML = "Fail";
+  } else {
+    document.getElementById("demo").innerHTML = subscription.subscriptionId;
+  }
 }
 
 
@@ -53,8 +57,7 @@ function initialiseState() {
 }
 
 function subscribe() {
-  // Disable the button so it can't be changed while
-  // we process the permission request
+  // Disable the button so it can't be changed while we process the permission request
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
         return sendSubscriptionToServer(subscription);
@@ -127,7 +130,7 @@ Notification.requestPermission(function(result) {
 // enhance and add push messaging support, otherwise continue without it.
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('js/sw.js').then(initialiseState);
-  subscribe();
+  // subscribe();
 } else {
   console.warn('Service workers aren\'t supported in this browser.');
 }
