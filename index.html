@@ -10,8 +10,45 @@
 
     <title>Watzenare</title>
 
-    <script src="js/push.js"></script>
+    <script src="js/push2.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
 
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+    <!-- 1. Load platform support before any code that touches the DOM. -->
+    <script src="libraries/webcomponentsjs/webcomponents.min.js"></script>
+    <style>
+
+        #main {
+            text-align: center;
+        }
+
+        paper-button {
+            background-color: #4285f4;
+            color: #fff;
+        }
+
+
+        .curl-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        code {
+            white-space: normal;
+            display: block;
+            text-align: left;
+            padding: 10px;
+            word-wrap: break-word;
+        }
+
+    </style>
   </head>
 
   <body>
