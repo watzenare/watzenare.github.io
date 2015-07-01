@@ -54,13 +54,7 @@ function initialiseState() {
 }
 
 function sendSubscriptionToServer(subscription) {
-  //console.log(subscription.subscriptionId);
-  // The curl command to trigger a push message straight from GCM
-  var curlCommand = 'curl --header "Authorization: key=' + API_KEY +
-    '" --header Content-Type:"application/json" ' + subscription.endpoint +
-    ' -d "{\\"registration_ids\\":[\\"' + subscription.subscriptionId + '\\"]}"';
-
-  console.log(curlCommand);
+  console.log(subscription.subscriptionId);
 }
 
 function subscribe() {
