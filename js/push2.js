@@ -1,4 +1,4 @@
-var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
+var API_KEY = 'AIzaSyC66A4t2_toN53nFK545rh_J8QCa_Y-zfU';
 
 // Once the service worker is registered set the initial state
 function initialiseState() {
@@ -55,10 +55,7 @@ function subscribe() {
   // Disable the button so it can't be changed while
   // we process the permission request
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-    serviceWorkerRegistration.pushManager.subscribe()
-      .then(function(subscription) {
-        // The subscription was successful
-
+    serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
         return sendSubscriptionToServer(subscription);
       })
       .catch(function(e) {
@@ -115,7 +112,7 @@ function unsubscribe() {
   });
 }
 
-// Opens an alert asking to the user if he wants to receive notifications
+// Requesting to the user if he wants to receive notifications
 Notification.requestPermission(function(result) {
     if (result === 'denied') {
         console.log('Permission wasn\'t granted. Allow a retry.');
@@ -130,9 +127,7 @@ Notification.requestPermission(function(result) {
 // Check that service workers are supported, if so, progressively
 // enhance and add push messaging support, otherwise continue without it.
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('js/sw.js')
-  // navigator.serviceWorker.register('/push-service-worker.js')
-  .then(initialiseState);
+  navigator.serviceWorker.register('js/sw.js').then(initialiseState);
 } else {
   console.warn('Service workers aren\'t supported in this browser.');
 }
