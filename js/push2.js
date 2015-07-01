@@ -116,7 +116,7 @@ function unsubscribe() {
 
 // Requesting to the user if he wants to receive notifications
 Notification.requestPermission(function(result) {
-    document.getElementById("perm").innerHTML = result;
+    $("#perm").html(result);
     if (result === 'denied') {
         console.log('Permission wasn\'t granted. Allow a retry.');
         return;
