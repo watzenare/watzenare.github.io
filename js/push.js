@@ -25,7 +25,7 @@ function subscribe() {
         });
     }).catch(function(e) {
         console.log(e);
-    };
+    });
     console.log("herrrrrr");
 }
 
