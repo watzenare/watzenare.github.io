@@ -112,24 +112,23 @@ function unsubscribe() {
   });
 }
 
-// Requesting to the user if he wants to receive notifications
-Notification.requestPermission(function(result) {
-    if (result === 'denied') {
-        console.log('Permission wasn\'t granted. Allow a retry.');
-        return;
-    } else if (result === 'default') {
-        console.log('The permission request was dismissed.');
-        return;
-    }
-    console.log('Permission was granted for notifications');
-});
+// // Requesting to the user if he wants to receive notifications
+// Notification.requestPermission(function(result) {
+//     if (result === 'denied') {
+//         console.log('Permission wasn\'t granted. Allow a retry.');
+//         return;
+//     } else if (result === 'default') {
+//         console.log('The permission request was dismissed.');
+//         return;
+//     }
+//     console.log('Permission was granted for notifications');
+// });
 
 // Check that service workers are supported, if so, progressively
 // enhance and add push messaging support, otherwise continue without it.
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('js/sw.js').then(initialiseState);
+  subscribe();
 } else {
   console.warn('Service workers aren\'t supported in this browser.');
 }
-
-subscribe();
