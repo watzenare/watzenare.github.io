@@ -4,11 +4,15 @@ var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
 // Once the service worker is registered set the initial state
 function initialiseState() {
+
+  console.log("ini1");
   // Are Notifications supported in the service worker?
   if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
     console.warn('Notifications aren\'t supported.');
     return;
   }
+
+  console.log("ini2");
 
   // Check the current Notification permission.
   // If its denied, it's a permanent block until the
@@ -18,26 +22,35 @@ function initialiseState() {
     return;
   }
 
+  console.log("ini3");
+
   // Check if push messaging is supported
   if (!('PushManager' in window)) {
     console.warn('Push messaging isn\'t supported.');
     return;
   }
 
+  console.log("ini4");
+
   // We need the service worker registration to check for a subscription
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+  console.log("ini5");
     // Do we already have a push message subscription?
     serviceWorkerRegistration.pushManager.getSubscription()
+  console.log("ini6");
       .then(function(subscription) {
+  console.log("ini7");
         // Enable any UI which subscribes / unsubscribes from
         // push messages.
 
         if (!subscription) {
+  console.log("ini8");
           // We aren't subscribed to push, so set UI
           // to allow the user to enable push
           return;
         }
 
+  console.log("ini9");
         // Keep your server in sync with the latest subscriptionId
         sendSubscriptionToServer(subscription);
 
@@ -45,10 +58,12 @@ function initialiseState() {
         // push messages
       })
       .catch(function(err) {
+  console.log("ini10err");
         console.warn('Error during getSubscription()', err);
       });
   })
   .catch(function(err) {
+  console.log("ini11err");
     console.warn('Error during initialiseState()', err);
   });
 }
@@ -58,17 +73,20 @@ function sendSubscriptionToServer(subscription) {
 }
 
 function subscribe() {
+  console.log("subs1");
   // Disable the button so it can't be changed while
   // we process the permission request
-
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+    console.log("subs2");
     serviceWorkerRegistration.pushManager.subscribe()
       .then(function(subscription) {
+        console.log("subs3");
         // The subscription was successful
 
         return sendSubscriptionToServer(subscription);
       })
       .catch(function(e) {
+        console.log("subs4");
         if (Notification.permission === 'denied') {
           // The user denied the notification permission which
           // means we failed to subscribe and the user will need
@@ -83,6 +101,7 @@ function subscribe() {
         }
       });
   }).catch(function(e) {
+    console.log("subs5");
   console.error(e);
 });
 }
