@@ -1,5 +1,10 @@
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
+function sendSubscriptionToServer(subscription) {
+  document.getElementById("demo").innerHTML = subscription.subscriptionId;
+}
+
+
 // Once the service worker is registered set the initial state
 function initialiseState() {
 
@@ -47,10 +52,6 @@ function initialiseState() {
   });
 }
 
-function sendSubscriptionToServer(subscription) {
-  document.getElementById("demo").innerHTML = subscription.subscriptionId;
-}
-
 function subscribe() {
   // Disable the button so it can't be changed while
   // we process the permission request
@@ -72,9 +73,7 @@ function subscribe() {
           console.error('Unable to subscribe to push.', e);
         }
       });
-  }).catch(function(e) {
-  console.error(e);
-});
+  });
 }
 
 
