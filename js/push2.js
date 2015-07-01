@@ -54,20 +54,16 @@ function sendSubscriptionToServer(subscription) {
 }
 
 function subscribe() {
-  console.log("subs1");
   // Disable the button so it can't be changed while
   // we process the permission request
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-    console.log("subs2");
     serviceWorkerRegistration.pushManager.subscribe()
       .then(function(subscription) {
-        console.log("subs3");
         // The subscription was successful
 
         return sendSubscriptionToServer(subscription);
       })
       .catch(function(e) {
-        console.log("subs4");
         if (Notification.permission === 'denied') {
           // The user denied the notification permission which
           // means we failed to subscribe and the user will need
@@ -82,7 +78,6 @@ function subscribe() {
         }
       });
   }).catch(function(e) {
-    console.log("subs5");
   console.error(e);
 });
 }
@@ -134,12 +129,6 @@ Notification.requestPermission(function(result) {
     console.log('Permission was granted for notifications');
 });
 
-// if (isPushEnabled) {
-//   unsubscribe();
-// } else {
-//   subscribe();
-// }
-
 // Check that service workers are supported, if so, progressively
 // enhance and add push messaging support, otherwise continue without it.
 if ('serviceWorker' in navigator) {
@@ -148,4 +137,10 @@ if ('serviceWorker' in navigator) {
   .then(initialiseState);
 } else {
   console.warn('Service workers aren\'t supported in this browser.');
+}
+
+if (isPushEnabled) {
+  unsubscribe();
+} else {
+  subscribe();
 }
