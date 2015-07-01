@@ -1,5 +1,3 @@
-var isPushEnabled = false;
-
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
 // Once the service worker is registered set the initial state
@@ -139,8 +137,4 @@ if ('serviceWorker' in navigator) {
   console.warn('Service workers aren\'t supported in this browser.');
 }
 
-if (isPushEnabled) {
-  unsubscribe();
-} else {
-  subscribe();
-}
+subscribe();
