@@ -3,8 +3,7 @@
 self.addEventListener('push', function(event) {
 
     var data = {};
-    var icon = 'https://es.tviso.com/img/tviso-chrome-extension-logo.png';
-    // var icon = 'https://es.tviso.com/img/tviso-app-logo.png';
+    var icon = 'https://cdn3.iconfinder.com/data/icons/supermario/PNG/retro-mushroom-super-2.png';
 
     if (event.data) {
         data = event.data.json();
