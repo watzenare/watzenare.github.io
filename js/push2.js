@@ -1,5 +1,7 @@
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
+
+// I WANT TO PRINT THE SUBSCRIPTIONID BUT THIS FUNCTION ISN'T REACHED
 function sendSubscriptionToServer(subscription) {
   if (!subscription) {
     document.getElementById("demo").innerHTML = "Fail";
@@ -39,7 +41,6 @@ function initialiseState() {
     // Do we already have a push message subscription?
     serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription) {
         if (!subscription) {
-          document.getElementById("demo").innerHTML = "Fail2";
           // We aren't subscribed to push, so set UI
           // to allow the user to enable push
           return;
