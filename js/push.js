@@ -8,8 +8,7 @@ function subscribe() {
             console.log("here2");
             // Keep your server in sync with the latest subscriptionId
             return sendSubscriptionToServer(subscription);
-        })
-        .catch(function(e) {
+        }).catch(function(e) {
             console.log("hereFAK");
             if (Notification.permission === 'denied') {
                 // The user denied the notification permission which
@@ -24,7 +23,9 @@ function subscribe() {
                 console.error('Unable to subscribe to push.', e);
             }
         });
-    });
+    }).catch(function(e) {
+        console.log(e);
+    };
     console.log("herrrrrr");
 }
 
