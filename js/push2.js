@@ -5,14 +5,14 @@ var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 // Once the service worker is registered set the initial state
 function initialiseState() {
 
-  console.log("ini1");
+  console.log("ini2");
   // Are Notifications supported in the service worker?
   if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
     console.warn('Notifications aren\'t supported.');
     return;
   }
 
-  console.log("ini2");
+  console.log("ini3");
 
   // Check the current Notification permission.
   // If its denied, it's a permanent block until the
@@ -22,7 +22,7 @@ function initialiseState() {
     return;
   }
 
-  console.log("ini3");
+  console.log("ini4");
 
   // Check if push messaging is supported
   if (!('PushManager' in window)) {
@@ -30,14 +30,13 @@ function initialiseState() {
     return;
   }
 
-  console.log("ini4");
+  console.log("ini5");
 
   // We need the service worker registration to check for a subscription
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-  console.log("ini5");
+  console.log("ini6");
     // Do we already have a push message subscription?
     serviceWorkerRegistration.pushManager.getSubscription()
-  console.log("ini6");
       .then(function(subscription) {
   console.log("ini7");
         // Enable any UI which subscribes / unsubscribes from
