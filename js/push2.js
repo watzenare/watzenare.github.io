@@ -1,4 +1,4 @@
-var isPushEnabled = true;
+var isPushEnabled = false;
 
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
@@ -43,7 +43,6 @@ function initialiseState() {
 
         // Set your UI to show they have subscribed for
         // push messages
-        isPushEnabled = true;
       })
       .catch(function(err) {
         console.warn('Error during getSubscription()', err);
@@ -69,7 +68,6 @@ function subscribe() {
     serviceWorkerRegistration.pushManager.subscribe()
       .then(function(subscription) {
         // The subscription was successful
-        isPushEnabled = true;
 
         // TODO: Send the subscription.subscriptionId and
         // subscription.endpoint to your server
@@ -90,7 +88,9 @@ function subscribe() {
           console.error('Unable to subscribe to push.', e);
         }
       });
-  });
+  })).catch(function(e) {
+  console.log(e);
+});
 }
 
 
@@ -106,7 +106,6 @@ function unsubscribe() {
         if (!pushSubscription) {
           // No subscription object, so set the state
           // to allow the user to subscribe to push
-          isPushEnabled = false;
           return;
         }
 
@@ -114,10 +113,10 @@ function unsubscribe() {
         // TODO: Make a request to your server to remove
         // the subscriptionId from your data store so you
         // don't attempt to send them push messages anymore
+        return sendSubscriptionToServer(pushSubscription);
 
         // We have a subscription, so call unsubscribe on it
         pushSubscription.unsubscribe().then(function(successful) {
-          isPushEnabled = false;
         }).catch(function(e) {
           // We failed to unsubscribe, this can lead to
           // an unusual state, so may be best to remove
