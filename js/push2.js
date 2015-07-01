@@ -88,8 +88,7 @@ function sendSubscriptionToServer(subscription) {
     '" --header Content-Type:"application/json" ' + subscription.endpoint +
     ' -d "{\\"registration_ids\\":[\\"' + subscription.subscriptionId + '\\"]}"';
 
-  var curlCodeElement = document.querySelector('.js-curl-code');
-  curlCodeElement.innerHTML = curlCommand;
+  console.log(curlCommand);
 }
 
 function subscribe() {
