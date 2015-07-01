@@ -2,14 +2,11 @@ var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
 // Subscribes the browser to the GCM and obtains an unique push id
 function subscribe() {
-        console.log("he");
     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
         serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
-            console.log("here2");
             // Keep your server in sync with the latest subscriptionId
             return sendSubscriptionToServer(subscription);
         }).catch(function(e) {
-            console.log("hereFAK");
             if (Notification.permission === 'denied') {
                 // The user denied the notification permission which
                 // means we failed to subscribe and the user will need
@@ -24,7 +21,6 @@ function subscribe() {
             }
         });
     });
-    console.log("herrrrrr");
 }
 
 // Unsubscribes the browser from the GCM in order to stop receiving more push messages
@@ -140,7 +136,7 @@ function sendSubscriptionToServer(subscription) {
     //     'id': subscription.subscriptionId
     // };
 
-    // $.post('/push/user/update', params, function(data) {
+    // $.post(BASE_URL + '/push/user/update', params, function(data) {
     //     if (data) {
     //         console.log("Push id obtained");
     //     } else {
