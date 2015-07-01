@@ -1,7 +1,7 @@
 
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
-// I WANT TO PRINT THE SUBSCRIPTIONID BUT THIS FUNCTION ISN'T REACHED
+// I WANT TO PRINT THE SUBSCRIPTION_ID BUT THIS FUNCTION ISN'T REACHED
 function sendSubscriptionToServer(subscription) {
   if (!subscription) {
     $("#demo").html("Fail");
@@ -59,7 +59,6 @@ function initialiseState() {
 function subscribe() {
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
-          $("#demo").html("Fail2");
         return sendSubscriptionToServer(subscription);
       })
       .catch(function(e) {
@@ -133,7 +132,6 @@ function requestPermission() {
 
 
 window.addEventListener('load', function() {
-  console.log("here");
   // Check that service workers are supported, if so, progressively
   // enhance and add push messaging support, otherwise continue without it.
   if ('serviceWorker' in navigator) {
