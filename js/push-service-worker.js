@@ -13,7 +13,7 @@ self.addEventListener('push', function(event) {
         return;
     }
 
-    var title = 'Tviso';
+    var title = 'New push!';
     var body = 'You have received a push message.';
     var tag = 'simple-push-demo-notification-tag';
 
