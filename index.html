@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Watzenare</title>
-	<script src="js/push.js"></script>
-</head>
-<body>
+<html lang="nl" dir="ltr" />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
 
-	<h1>Push Tests</h1>
 
-	<p>Accept the push and you'll receive push notifications.</p>
+    <title>Watzenare</title>
 
-</body>
+    <script src="js/push.js"></script>
+
+  </head>
+
+  <body>
+
+    <div id="main">
+
+
+        <button class="js-push-button" disabled>Enable push notifications</button>
+
+        <div class="curl-container">
+
+        <p>Copy and paste the following CURL command into your terminal
+            to send a push message to your browser.</p>
+
+
+        <code class="curl-code-example js-curl-code"></code>
+
+        </div>
+
+    </div>
+
+  </body>
+
 </html>
