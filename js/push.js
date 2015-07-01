@@ -4,7 +4,6 @@ var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 function subscribe() {
         console.log("he");
     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-        console.log("here1");
         serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
             console.log("here2");
             // Keep your server in sync with the latest subscriptionId
