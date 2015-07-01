@@ -1,4 +1,4 @@
-var API_KEY = 'AIzaSyC66A4t2_toN53nFK545rh_J8QCa_Y-zfU';
+var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
 // Once the service worker is registered set the initial state
 function initialiseState() {
