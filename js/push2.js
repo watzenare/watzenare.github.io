@@ -134,7 +134,7 @@ window.addEventListener('load', function() {
     navigator.serviceWorker.register('js/sw.js').then(initialiseState);
     subscribe();
   } else {
-    document.getElementById("perm").innerHTML = "Push is no available for your browser (use Chrome or Firefox updated)";
+    $("#perm").html("Push is no available for your browser (use Chrome or Firefox updated)");
     console.warn('Service workers aren\'t supported in this browser.');
   }
 });
