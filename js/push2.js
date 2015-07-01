@@ -131,7 +131,7 @@ Notification.requestPermission(function(result) {
 // enhance and add push messaging support, otherwise continue without it.
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('js/sw.js').then(initialiseState);
-  unsubscribe();
+  subscribe();
 } else {
   console.warn('Service workers aren\'t supported in this browser.');
   document.getElementById("perm").innerHTML = "Push is no available for your browser (use Chrome or Firefox updated)";
