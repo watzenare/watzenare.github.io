@@ -4,9 +4,9 @@ var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 // I WANT TO PRINT THE SUBSCRIPTIONID BUT THIS FUNCTION ISN'T REACHED
 function sendSubscriptionToServer(subscription) {
   if (!subscription) {
-    document.getElementById("demo").innerHTML = "Fail";
+    $("#demo").html("Fail");
   } else {
-    document.getElementById("demo").innerHTML = subscription.subscriptionId;
+    $("#demo").html(subscription.subscriptionId);
   }
 }
 
@@ -59,7 +59,7 @@ function initialiseState() {
 function subscribe() {
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
-          document.getElementById("demo").innerHTML = "Fail2";
+          $("#demo").html("Fail2");
         return sendSubscriptionToServer(subscription);
       })
       .catch(function(e) {
