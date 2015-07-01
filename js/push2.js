@@ -39,6 +39,7 @@ function initialiseState() {
     // Do we already have a push message subscription?
     serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription) {
         if (!subscription) {
+          document.getElementById("demo").innerHTML = "Fail2";
           // We aren't subscribed to push, so set UI
           // to allow the user to enable push
           return;
