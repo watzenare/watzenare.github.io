@@ -9,6 +9,9 @@ self.addEventListener('push', function(event) {
     if (event.data) {
         data = event.data.json();
         console.log('Received a push message', event);
+    } else {
+        console.log('No push data received', event);
+        return;
     }
 
     var title = 'Tviso';
@@ -16,10 +19,13 @@ self.addEventListener('push', function(event) {
     var tag = 'simple-push-demo-notification-tag';
 
     event.waitUntil(
-        self.registration.showNotification(data.title, {
-            body: data.body,
+        self.registration.showNotification(title, {
+        // self.registration.showNotification(data.title, {
+            body: body,
+            // body: data.body,
             icon: icon,
-            tag: data.tag
+            tag: tag
+            // tag: data.tag
         })
     );
 
