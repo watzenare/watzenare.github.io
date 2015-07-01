@@ -127,12 +127,14 @@ Notification.requestPermission(function(result) {
     console.log('Permission was granted for notifications');
 });
 
-// Check that service workers are supported, if so, progressively
-// enhance and add push messaging support, otherwise continue without it.
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('js/sw.js').then(initialiseState);
-  subscribe();
-} else {
-  console.warn('Service workers aren\'t supported in this browser.');
-  document.getElementById("perm").innerHTML = "Push is no available for your browser (use Chrome or Firefox updated)";
-}
+window.addEventListener('load', function() {
+  // Check that service workers are supported, if so, progressively
+  // enhance and add push messaging support, otherwise continue without it.
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('js/sw.js').then(initialiseState);
+    subscribe();
+  } else {
+    console.warn('Service workers aren\'t supported in this browser.');
+    document.getElementById("perm").innerHTML = "Push is no available for your browser (use Chrome or Firefox updated)";
+  }
+});
