@@ -49,6 +49,7 @@ function initialiseState() {
 
 function sendSubscriptionToServer(subscription) {
   console.log(subscription.subscriptionId);
+  document.getElementById("demo").innerHTML = subscription.subscriptionId;
 }
 
 // function subscribe() {
