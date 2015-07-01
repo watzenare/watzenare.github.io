@@ -1,6 +1,18 @@
 var isPushEnabled = false;
 
-var API_KEY = 'AIzaSyBbH1nFbeEKEM9ueugMgpOxCMIYkyAZFE4';
+var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
+
+// Opens an alert asking to the user if he wants to receive notifications
+Notification.requestPermission(function(result) {
+    if (result === 'denied') {
+        console.log('Permission wasn\'t granted. Allow a retry.');
+        return;
+    } else if (result === 'default') {
+        console.log('The permission request was dismissed.');
+        return;
+    }
+    console.log('Permission was granted for notifications');
+});
 
 window.addEventListener('load', function() {
   var pushButton = document.querySelector('.js-push-button');
