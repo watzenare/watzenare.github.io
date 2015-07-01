@@ -2,34 +2,6 @@ var isPushEnabled = true;
 
 var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
 
-// Opens an alert asking to the user if he wants to receive notifications
-Notification.requestPermission(function(result) {
-    if (result === 'denied') {
-        console.log('Permission wasn\'t granted. Allow a retry.');
-        return;
-    } else if (result === 'default') {
-        console.log('The permission request was dismissed.');
-        return;
-    }
-    console.log('Permission was granted for notifications');
-});
-
-if (isPushEnabled) {
-  unsubscribe();
-} else {
-  subscribe();
-}
-
-// Check that service workers are supported, if so, progressively
-// enhance and add push messaging support, otherwise continue without it.
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('js/sw.js')
-  // navigator.serviceWorker.register('/push-service-worker.js')
-  .then(initialiseState);
-} else {
-  console.warn('Service workers aren\'t supported in this browser.');
-}
-
 // Once the service worker is registered set the initial state
 function initialiseState() {
   // Are Notifications supported in the service worker?
@@ -158,4 +130,32 @@ function unsubscribe() {
         console.error('Error thrown while unsubscribing from push messaging.', e);
       });
   });
+}
+
+// Opens an alert asking to the user if he wants to receive notifications
+Notification.requestPermission(function(result) {
+    if (result === 'denied') {
+        console.log('Permission wasn\'t granted. Allow a retry.');
+        return;
+    } else if (result === 'default') {
+        console.log('The permission request was dismissed.');
+        return;
+    }
+    console.log('Permission was granted for notifications');
+});
+
+if (isPushEnabled) {
+  unsubscribe();
+} else {
+  subscribe();
+}
+
+// Check that service workers are supported, if so, progressively
+// enhance and add push messaging support, otherwise continue without it.
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('js/sw.js')
+  // navigator.serviceWorker.register('/push-service-worker.js')
+  .then(initialiseState);
+} else {
+  console.warn('Service workers aren\'t supported in this browser.');
 }
