@@ -116,6 +116,7 @@ function unsubscribe() {
 
 // Requesting to the user if he wants to receive notifications
 Notification.requestPermission(function(result) {
+    document.getElementById("perm").innerHTML = result;
     if (result === 'denied') {
         console.log('Permission wasn\'t granted. Allow a retry.');
         return;
@@ -134,5 +135,3 @@ if ('serviceWorker' in navigator) {
 } else {
   console.warn('Service workers aren\'t supported in this browser.');
 }
-var n = Notification.permission;
-document.getElementById("perm").innerHTML = n;
