@@ -47,6 +47,9 @@ function initialiseState() {
       .catch(function(err) {
         console.warn('Error during getSubscription()', err);
       });
+  })
+  .catch(function(err) {
+    console.warn('Error during initialiseState()', err);
   });
 }
 
@@ -69,9 +72,6 @@ function subscribe() {
       .then(function(subscription) {
         // The subscription was successful
 
-        // TODO: Send the subscription.subscriptionId and
-        // subscription.endpoint to your server
-        // and save it to send a push message at a later date
         return sendSubscriptionToServer(subscription);
       })
       .catch(function(e) {
@@ -89,7 +89,7 @@ function subscribe() {
         }
       });
   }).catch(function(e) {
-  console.log(e);
+  console.error(e);
 });
 }
 
@@ -110,9 +110,6 @@ function unsubscribe() {
         }
 
         var subscriptionId = pushSubscription.subscriptionId;
-        // TODO: Make a request to your server to remove
-        // the subscriptionId from your data store so you
-        // don't attempt to send them push messages anymore
         return sendSubscriptionToServer(pushSubscription);
 
         // We have a subscription, so call unsubscribe on it
