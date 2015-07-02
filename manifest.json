@@ -3,8 +3,8 @@
     "short_name": "Chrome Push",
     "icons": [
         {
-            "src": "https://cdn3.iconfinder.com/data/icons/supermario/PNG/retromushroomsuper2.png",
-            "sizes": "128",
+            "src": "icon96.png",
+            "sizes": "96",
             "type": "image/png"
         }
     ],
