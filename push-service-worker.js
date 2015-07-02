@@ -4,7 +4,7 @@ self.addEventListener('push', function(event) {
     var data = {};
     var icon = 'https://cdn3.iconfinder.com/data/icons/supermario/PNG/retro-mushroom-super-2.png';
 
-    if (event.data) {
+    if (event.notification) {
         console.log('Received a push message');
         data = event.notification.json();
 
