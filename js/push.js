@@ -97,9 +97,6 @@ function unsubscribe() {
 
         // We have a subscription, so call unsubscribe on it
         pushSubscription.unsubscribe().then(function(successful) {
-        }, function(err) {
-          console.log("unsubscribe3");
-          console.log(err);
         }).catch(function(e) {
           // We failed to unsubscribe, this can lead to
           // an unusual state, so may be best to remove
@@ -134,7 +131,7 @@ window.addEventListener('load', function() {
   // Check that service workers are supported, if so, progressively
   // enhance and add push messaging support, otherwise continue without it.
   if ('serviceWorker' in navigator) {
-    requestPermission();
+    // requestPermission();
     navigator.serviceWorker.register('/push-service-worker.js').then(initialiseState);
     subscribe();
   } else {
