@@ -6,7 +6,7 @@ self.addEventListener('push', function(event) {
 
     if (event.data) {
         console.log('Received a push message');
-        data = event.data.json();
+        data = event.notification.json();
 
         event.waitUntil(
             self.registration.showNotification(data.title, {
