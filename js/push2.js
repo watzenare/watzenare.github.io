@@ -13,22 +13,18 @@ function sendSubscriptionToServer(subscription) {
 
 // Once the service worker is registered set the initial state
 function initialiseState() {
-
   // Are Notifications supported in the service worker?
   if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
     console.warn('Notifications aren\'t supported.');
     return;
   }
 
-
   // Check the current Notification permission.
-  // If its denied, it's a permanent block until the
-  // user changes the permission
+  // If its denied, it's a permanent block until the user changes the permission
   if (Notification.permission === 'denied') {
     console.warn('The user has blocked notifications.');
     return;
   }
-
 
   // Check if push messaging is supported
   if (!('PushManager' in window)) {
@@ -57,7 +53,6 @@ function initialiseState() {
 }
 
 function subscribe() {
-
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
         return sendSubscriptionToServer(subscription);
@@ -82,7 +77,6 @@ function subscribe() {
 
 
 function unsubscribe() {
-
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     // To unsubscribe from push messaging, you need get the
     // subscription object, which you can call unsubscribe() on.
