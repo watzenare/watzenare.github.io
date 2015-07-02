@@ -1,6 +1,10 @@
 // This is the serviceworker that will be running on background when a push is received
 
 self.addEventListener('push', function(event) {
+console.log(event);
+console.log(event.notification);
+console.log(event.data);
+
     var data = {};
     var icon = 'https://cdn3.iconfinder.com/data/icons/supermario/PNG/retro-mushroom-super-2.png';
 
