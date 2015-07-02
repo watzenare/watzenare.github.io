@@ -5,13 +5,13 @@ self.addEventListener('push', function(event) {
     var data = {};
     var icon = 'https://cdn3.iconfinder.com/data/icons/supermario/PNG/retro-mushroom-super-2.png';
 
-    if (event.data) {
-        data = event.data.json();
-        console.log('Received a push message', event);
-    } else {
-        console.log('No push data received', event);
-        return;
-    }
+    // if (event.data) {
+    //     data = event.data.json();
+    //     console.log('Received a push message', event);
+    // } else {
+    //     console.log('No push data received', event);
+    //     return;
+    // }
 
     var title = 'New push!';
     var body = 'You have received a push message.';
