@@ -138,7 +138,7 @@ window.addEventListener('load', function() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('js/sw.js').then(initialiseState);
     requestPermission();
-    // subscribe();
+    subscribe();
   } else {
     $("#demo").html("Push is no available for your browser (use Chrome or Firefox updated)");
     console.warn('Service workers aren\'t supported in this browser.');
