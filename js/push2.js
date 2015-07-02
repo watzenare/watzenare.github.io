@@ -151,7 +151,6 @@ function requestPermission() {
 
 
 window.addEventListener('load', function() {
-  $('#enable').on('click', function() {
     // Check that service workers are supported, if so, progressively
     // enhance and add push messaging support, otherwise continue without it.
     if ('serviceWorker' in navigator) {
@@ -162,5 +161,4 @@ window.addEventListener('load', function() {
       $("#demo").html("Push is no available for your browser (use Chrome or Firefox updated)");
       console.warn('Service workers aren\'t supported in this browser.');
     }
-  });
 });
