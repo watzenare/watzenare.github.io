@@ -155,7 +155,7 @@ window.addEventListener('load', function() {
     // Check that service workers are supported, if so, progressively
     // enhance and add push messaging support, otherwise continue without it.
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(initialiseState);
+      navigator.serviceWorker.register('/push-service-worker.js').then(initialiseState);
       requestPermission();
       subscribe();
     } else {
