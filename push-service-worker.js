@@ -24,20 +24,18 @@ console.log(event);
     //         tag: data.tag
     //     })
     // );
-    var title = 'Yay a message!';
-    var body = 'We have received a push message.';
-    var icon = 'https://cdn3.iconfinder.com/data/icons/supermario/PNG/retro-mushroom-super-2.png';
-    var tag = 'simple-push-demo-notification-tag';
+  var title = 'Yay a message!';
+  var body = 'We have received a push message.';
+  var icon = 'https://cdn3.iconfinder.com/data/icons/supermario/PNG/retro-mushroom-super-2.png';
+  var tag = 'simple-push-demo-notification-tag';
 
-    event.waitUntil(
-        self.registration.showNotification(title, {
-            body: body,
-            icon: icon,
-            tag: tag
-        })
-    );
-
-    setTimeout(n.close.bind(event), 10000);
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body: body,
+      icon: icon,
+      tag: tag
+    })
+  );
 });
 
 // // If user click on the notification window, we have to take him to the interesting content
