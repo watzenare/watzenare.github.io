@@ -48,6 +48,9 @@ function initialiseState() {
       .catch(function(err) {
         console.warn('Error during getSubscription()', err);
       });
+  }, function(err) {
+    console.log("init1");
+    console.log(err);
   })
   .catch(function(err) {
     console.warn('Error during initialiseState()', err);
@@ -58,6 +61,9 @@ function subscribe() {
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
         return sendSubscriptionToServer(subscription);
+      }, function(err) {
+        console.log("subscribe2");
+        console.log(err);
       })
       .catch(function(e) {
         if (Notification.permission === 'denied') {
@@ -73,6 +79,11 @@ function subscribe() {
           console.error('Unable to subscribe to push.', e);
         }
       });
+  }, function(err) {
+    console.log("subscribe1");
+    console.log(err);
+  }).catch(function(e) {
+    console.log('Subscription error: ', e);
   });
 }
 
@@ -96,6 +107,9 @@ function unsubscribe() {
 
         // We have a subscription, so call unsubscribe on it
         pushSubscription.unsubscribe().then(function(successful) {
+        }, function(err) {
+          console.log("unsubscribe3");
+          console.log(err);
         }).catch(function(e) {
           // We failed to unsubscribe, this can lead to
           // an unusual state, so may be best to remove
@@ -104,7 +118,15 @@ function unsubscribe() {
 
           console.log('Unsubscription error: ', e);
         });
+      }, function(err) {
+        console.log("unsubscribe2");
+        console.log(err);
+      }).catch(function(e) {
+        console.error('Error thrown while unsubscribing from push messaging.', e);
       });
+  }, function(err) {
+    console.log("unsubscribe1");
+    console.log(err);
   });
 }
 
@@ -131,7 +153,7 @@ window.addEventListener('load', function() {
     // enhance and add push messaging support, otherwise continue without it.
     if ('serviceWorker' in navigator) {
       requestPermission();
-      navigator.serviceWorker.register('/sw.js').then(initialiseState);
+      navigator.serviceWorker.register('/push-service-worker.js').then(initialiseState);
       subscribe();
     } else {
       $("#demo").html("Push is no available for your browser (use Chrome or Firefox updated)");
