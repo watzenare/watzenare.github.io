@@ -13,6 +13,7 @@ function sendSubscriptionToServer(subscription) {
 
 // Once the service worker is registered set the initial state
 function initialiseState() {
+  debugger;
   // Are Notifications supported in the service worker?
   if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
     console.warn('Notifications aren\'t supported.');
