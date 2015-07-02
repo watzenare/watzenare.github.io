@@ -57,6 +57,7 @@ function initialiseState() {
 }
 
 function subscribe() {
+
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
         return sendSubscriptionToServer(subscription);
@@ -131,7 +132,7 @@ function requestPermission() {
 }
 
 
-// window.addEventListener('load', function() {
+window.addEventListener('load', function() {
   // Check that service workers are supported, if so, progressively
   // enhance and add push messaging support, otherwise continue without it.
   if ('serviceWorker' in navigator) {
@@ -142,4 +143,4 @@ function requestPermission() {
     $("#demo").html("Push is no available for your browser (use Chrome or Firefox updated)");
     console.warn('Service workers aren\'t supported in this browser.');
   }
-// });
+});
