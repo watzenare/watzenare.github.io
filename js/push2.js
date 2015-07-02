@@ -83,6 +83,8 @@ function subscribe() {
   }, function(err) {
     console.log("subscribe1");
     console.log(err);
+  }).catch(function(e) {
+    console.log('Subscription error: ', e);
   });
 }
 
