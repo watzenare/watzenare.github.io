@@ -1,31 +1,27 @@
 // This is the serviceworker that will be running on background when a push is received
 
 self.addEventListener('push', function(event) {
-    console.log('Received a push message', event);
 
     var data = {};
     var icon = 'https://cdn3.iconfinder.com/data/icons/supermario/PNG/retro-mushroom-super-2.png';
 
-    // if (event.data) {
-    //     data = event.data.json();
-    //     console.log('Received a push message', event);
-    // } else {
-    //     console.log('No push data received', event);
-    //     return;
-    // }
+    if (event.data) {
+        data = event.data.json();
+        console.log('Received a push message', event);
+    } else {
+        console.log('No push data received', event);
+        return;
+    }
 
-    var title = 'New push!';
-    var body = 'You have received a push message.';
-    var tag = 'simple-push-demo-notification-tag';
+    // var title = 'New push!';
+    // var body = 'You have received a push message.';
+    // var tag = 'simple-push-demo-notification-tag';
 
     event.waitUntil(
-        self.registration.showNotification(title, {
-        // self.registration.showNotification(data.title, {
-            body: body,
-            // body: data.body,
+        self.registration.showNotification(data.title, {
+            body: data.body,
             icon: icon,
-            tag: tag
-            // tag: data.tag
+            tag: data.tag
         })
     );
 
