@@ -43,42 +43,20 @@ self.addEventListener('push', function(event) {
 //     console.log(event);
 //     console.log(event.notification);
 
-//     // // This looks to see if the current window is already open and focuses if it is
-//     // event.waitUntil(
-//     //     clients.matchAll({
-//     //         type: "window"
-//     //     })
-//     //     .then(function(clientList) {
-//     //         for (var i = 0; i < clientList.length; i++) {
-//     //             var client = clientList[i];
-//     //             if (client.url == '/' && 'focus' in client)
-//     //                 return client.focus();
-//     //             }
-//     //         if (clients.openWindow) {
-//     //             return clients.openWindow('/');
-//     //         }
-//     //     })
-//     // );
+//     // // This looks to see if the current is already open and
+    // focuses if it is
+    // event.waitUntil(
+    //     clients.matchAll({
+    //         type: "window"
+    //     }).then(function (clientList) {
+    //         if (clients.openWindow) {
+    //             if (url) {
+    //                 var openUrl = url;
+    //                 url = null;
+    //                 return clients.openWindow(openUrl);
+    //             }
+    //             return clients.openWindow('/');
+    //         }
+    //     })
+    // );
 // });
-
-self.addEventListener('message', function (evt) {
-    console.log('postMessage received', evt.data);
-    if (evt.data.applicationCode) {
-        pushwooshUrl = evt.data.pushwooshUrl;
-        APPLICATION_CODE = evt.data.applicationCode;
-        hwid = evt.data.hwid;
-    }
-});
-
-// refresh caches
-self.addEventListener('activate', function (event) {
-    event.waitUntil(
-        caches.keys().then(function (cacheNames) {
-            return Promise.all(
-                cacheNames.map(function (cacheName) {
-                    return caches.delete(cacheName);
-                })
-            );
-        })
-    );
-});
