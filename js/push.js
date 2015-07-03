@@ -4,6 +4,7 @@ function sendSubscriptionToServer(subscription) {
   if (!subscription) {
     $("#demo").html("Fail");
   } else {
+    console.log(subscription);
     $("#demo").html(subscription.subscriptionId);
   }
 }
