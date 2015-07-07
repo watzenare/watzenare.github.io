@@ -136,8 +136,8 @@ window.addEventListener('load', function() {
     navigator.serviceWorker.register('/push-service-worker.js').then(initialiseState);
     subscribe();
   } else {
-    $("#demo").html("Push is no available for your browser (use Chrome or Firefox updated)");
-    console.warn('Service workers aren\'t supported in this browser.');
+    $("#demo").html("<b>Push is no available for your browser (use Chrome or Firefox updated)</b>");
+    console.warn('<b>Service workers aren\'t supported in this browser.</b>');
   }
 });
 
