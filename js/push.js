@@ -53,6 +53,7 @@ function initialiseState() {
 
 function subscribe() {
   navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+    console.log(serviceWorkerRegistration);
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
         return sendSubscriptionToServer(subscription);
       }, function(err) {
