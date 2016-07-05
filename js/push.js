@@ -57,7 +57,7 @@ function subscribe() {
     serviceWorkerRegistration.pushManager.subscribe().then(function(subscription) {
         return sendSubscriptionToServer(subscription);
       }, function(err) {
-        console.log("subscribe2");
+        console.log("Cannot subscribe()");
         console.log(err);
       })
       .catch(function(e) {
