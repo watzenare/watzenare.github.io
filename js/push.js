@@ -97,16 +97,16 @@ function unsubscribe() {
         var subscriptionId = pushSubscription.subscriptionId;
         return sendSubscriptionToServer(pushSubscription);
 
-        // We have a subscription, so call unsubscribe on it
-        pushSubscription.unsubscribe().then(function(successful) {
-        }).catch(function(e) {
-          // We failed to unsubscribe, this can lead to
-          // an unusual state, so may be best to remove
-          // the users data from your data store and
-          // inform the user that you have done so
-
-          console.log('Unsubscription error: ', e);
-        });
+        //// We have a subscription, so call unsubscribe on it
+        //pushSubscription.unsubscribe().then(function(successful) {
+        //}).catch(function(e) {
+        //  // We failed to unsubscribe, this can lead to
+        //  // an unusual state, so may be best to remove
+        //  // the users data from your data store and
+        //  // inform the user that you have done so
+        //
+        //  console.log('Unsubscription error: ', e);
+        //});
       });
   });
 }
@@ -134,7 +134,7 @@ window.addEventListener('load', function() {
   // enhance and add push messaging support, otherwise continue without it.
   if ('serviceWorker' in navigator) {
     // requestPermission();
-    navigator.serviceWorker.register('/sw.js').then(initialiseState);
+    navigator.serviceWorker.register('/push-service-worker.js').then(initialiseState);
     subscribe();
   } else {
     $("#demo").html("<b>Push is no available for your browser (use Chrome or Firefox updated)</b>");
