@@ -134,7 +134,7 @@ window.addEventListener('load', function() {
   // enhance and add push messaging support, otherwise continue without it.
   if ('serviceWorker' in navigator) {
     // requestPermission();
-    navigator.serviceWorker.register('/push-service-worker.js').then(initialiseState);
+    navigator.serviceWorker.register('/sw.js').then(initialiseState);
     subscribe();
   } else {
     $("#demo").html("<b>Push is no available for your browser (use Chrome or Firefox updated)</b>");
