@@ -1,12 +1,13 @@
 {
-  "name": "Push Demo",
-  "short_name": "Push Demo",
-  "icons": [{
-        "src": "images/hipstercat.jpg",
-        "sizes": "225x225",
-        "type": "image/jpg"
-      }],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "gcm_sender_id": "377865906010"
+    "name": "Chrome Push",
+    "short_name": "Chrome Push",
+    "icons": [{
+        "src": "img/icon96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+    }],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "gcm_sender_id": "377865906010",
+    "gcm_user_visible_only": true
 }
