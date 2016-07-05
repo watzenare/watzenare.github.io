@@ -1,4 +1,4 @@
-var API_KEY = 'AIzaSyCt3s2McCe7vfvoxQnYvW9WtUR60HFAgPc';
+var API_KEY = 'AIzaSyAx2FZmfHzPShG-PMoRs2WfmBkC_Ry4-rI';
 
 function sendSubscriptionToServer(subscription) {
   if (!subscription) {
