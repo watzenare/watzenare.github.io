@@ -6,7 +6,7 @@
         "sizes": "96x96",
         "type": "image/png"
     }],
-    "start_url": "/index.html",
+    "start_url": "./index.html",
     "display": "standalone",
     "gcm_sender_id": "377865906010",
     "gcm_user_visible_only": true
